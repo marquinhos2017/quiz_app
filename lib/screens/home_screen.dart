@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question_model.dart';
 import 'package:quiz_app/widgets/next_button.dart';
+import 'package:quiz_app/widgets/option_card.dart';
 import 'package:quiz_app/widgets/question_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,15 +26,23 @@ class _HomeScreenState extends State<HomeScreen> {
     )
   ];
   int index=0;
+  bool isPressed = false;
   void nextQuestion(){
     if(index == _questions.length-1){
       return;
     }else{
        setState(() {
       index++;
+      isPressed = false;
     });
     }
    
+  }
+
+  void changeColor(){
+    setState(() {
+      isPressed = true;
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -55,6 +64,18 @@ class _HomeScreenState extends State<HomeScreen> {
               totalQuestions: _questions.length,
               ),
               const Divider(color: neutral),
+              const SizedBox(height: 25),
+              for(int i = 0; i < _questions[index].options.length;i++)
+              OptionCard(
+                option: _questions[index].options.keys.toList()[i],
+                color: isPressed ? _questions[index].options.values.toList()[i] == true
+                  ? correct
+                  : incorrect  
+                : neutral, 
+                onTap: changeColor,
+              ),
+              
+                
           ],
         ),
       ),
