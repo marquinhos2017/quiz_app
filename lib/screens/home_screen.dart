@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question_model.dart';
+import 'package:quiz_app/widgets/next_button.dart';
 import 'package:quiz_app/widgets/question_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,6 +25,16 @@ class _HomeScreenState extends State<HomeScreen> {
     )
   ];
   int index=0;
+  void nextQuestion(){
+    if(index == _questions.length-1){
+      return;
+    }else{
+       setState(() {
+      index++;
+    });
+    }
+   
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Quiz App'),
         backgroundColor: background,
-        shadowColor: Colors.transparent,
+        shadowColor: const Color.fromRGBO(0, 0, 0, 0),
       ),
       body: Container(
         width: double.infinity,
@@ -47,6 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: NextButton(
+          nextQuestion: nextQuestion,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
