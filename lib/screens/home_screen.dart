@@ -71,14 +71,22 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        title: const Text('Quiz App'),
+        title: const Text(
+          'Quiz App',
+          style: TextStyle(
+            color: neutral,
+          ),
+        ),
         backgroundColor: background,
         shadowColor: const Color.fromRGBO(0, 0, 0, 0),
         actions: [
           Padding(padding: const EdgeInsets.all(10), 
           child: Text(
             'Score: $score',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(
+              fontSize: 20,
+              color: neutral
+              ),
             ),
           )
         ],
