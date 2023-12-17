@@ -4,6 +4,7 @@ import 'package:quiz_app/models/question_model.dart';
 import 'package:quiz_app/widgets/next_button.dart';
 import 'package:quiz_app/widgets/option_card.dart';
 import 'package:quiz_app/widgets/question_widget.dart';
+import 'package:quiz_app/widgets/result_box.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,7 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void nextQuestion(){
     if(index == _questions.length-1){
-      return;
+      showDialog(
+        context: context, 
+        barrierDismissible: false,
+        builder: (ctx) => ResultBox(result: score,questionLenght: _questions.length,));
     }else{
       if(isPressed){
         setState(() {
