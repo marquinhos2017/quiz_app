@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       showDialog(
         context: context, 
         barrierDismissible: false,
-        builder: (ctx) => ResultBox(result: score,questionLenght: _questions.length,));
+        builder: (ctx) => ResultBox(result: score,questionLenght: _questions.length, onPressed: startOver,));
     }else{
       if(isPressed){
         setState(() {
@@ -70,13 +70,23 @@ class _HomeScreenState extends State<HomeScreen> {
           isAlreadySelected = true;
         });
       }else{
-        setState(() {
-          isPressed = true;
-          
-        });
         print("Selecionado a errada");
       }
+       setState(() {
+          isPressed = true;
+          isAlreadySelected = true;
+        });
     }
+  }
+
+  void startOver(){
+    setState(() {
+      index=0;
+      score=0;
+      isPressed=false;
+      isAlreadySelected=false;
+    });
+    Navigator.pop(context);
   }
 
   @override
