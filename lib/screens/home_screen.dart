@@ -28,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int index=0;
   int score = 0;
   bool isPressed = false;
-    bool isAlreadySelected = false;
+  bool isAlreadySelected = false;
+
   void nextQuestion(){
     if(index == _questions.length-1){
       return;
@@ -52,20 +53,28 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void checkAnswerandUpdate(bool value){
+    
     if(isAlreadySelected){
       return;
     }else{
+      
       if(value == true){
+        print("Selecionado a correta");
         score++;
         setState(() {
           isPressed = true;
           isAlreadySelected = true;
         });
+      }else{
+        setState(() {
+          isPressed = true;
+          
+        });
+        print("Selecionado a errada");
       }
     }
-    
-   
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,17 +113,18 @@ class _HomeScreenState extends State<HomeScreen> {
               const Divider(color: neutral),
               const SizedBox(height: 25),
               for(int i = 0; i < _questions[index].options.length;i++)
-              GestureDetector(
-                onTap: () => checkAnswerandUpdate(_questions[index].options.values.toList()[i] ),
-                child: OptionCard(
-                  option: _questions[index].options.keys.toList()[i],
-                  color: isPressed ? _questions[index].options.values.toList()[i] == true
-                    ? correct
-                    : incorrect  
-                  : neutral, 
-                 
+                GestureDetector(
+                  onTap: () => checkAnswerandUpdate(_questions[index].options.values.toList()[i] ),
+                  child: OptionCard(
+                    option: _questions[index].options.keys.toList()[i],
+                    color: isPressed
+                      ? _questions[index].options.values.toList()[i] == true
+                        ? correct
+                        : incorrect  
+                    : neutral, 
+                  
+                  ),
                 ),
-              ),
               
                 
           ],
