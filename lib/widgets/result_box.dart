@@ -34,25 +34,25 @@ class ResultBox extends StatelessWidget {
               height: 20,
             ),
             CircleAvatar(
-              child: Text(
-                '$result/$questionLenght',
-                style: TextStyle(
-                  fontSize: 30,
-                  
-                ), 
-
-              ),
               radius: 70,
               backgroundColor: result == questionLenght/2
                     ? Colors.yellow
                     : result < questionLenght/2
                       ? incorrect
                       : correct,
+              child: Text(
+                '$result/$questionLenght',
+                style: const TextStyle(
+                  fontSize: 30,
+                  
+                ), 
+
+              ),
             ),
             const SizedBox(height: 20,),
             Text(
              result == questionLenght/2 ? "Almost There" : result < questionLenght/2 ? "Try again" : "Great",
-             style: TextStyle(color: neutral),
+             style: const TextStyle(color: neutral),
                 
             ),
             const SizedBox(
@@ -60,7 +60,7 @@ class ResultBox extends StatelessWidget {
             ),
             GestureDetector(
               onTap: onPressed,
-              child: Text(
+              child: const Text(
                 "Start Over",
                 style: TextStyle(
                   color: Colors.black,
