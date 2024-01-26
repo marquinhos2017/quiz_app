@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question_model.dart';
 import 'package:quiz_app/widgets/next_button.dart';
-import 'package:quiz_app/widgets/option_card.dart';
 import 'package:quiz_app/widgets/question_widget.dart';
 import 'package:quiz_app/widgets/result_box.dart';
 
@@ -65,7 +64,13 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       }else{
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Please select any option"),
+         backgroundColor: Colors.black,
+          padding:EdgeInsets.all(8),
+            content: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              child: Text("Please select any option"),
+            ),
+            elevation: 6.0,
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(vertical: 20),
           ));
@@ -116,19 +121,20 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: background,
       appBar: AppBar(
         title: const Text(
-          'Quiz App',
+          'Bble Quiz',
           style: TextStyle(
             color: neutral,
+            fontSize: 20
           ),
         ),
         backgroundColor: background,
         shadowColor: const Color.fromRGBO(0, 0, 0, 0),
         actions: [
-          Padding(padding: const EdgeInsets.all(10), 
+          Padding(padding: const EdgeInsets.only(right:20), 
           child: Text(
             'Score: $score',
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 16,
               color: neutral
               ),
             ),
